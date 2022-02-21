@@ -1,0 +1,860 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Speech Data Exploration &#8212; Stylometric Analysis on Churchill&#39;s Political Speeches (SAPS)</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../_static/ChurchillSticker1.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Stylometric analysis of Churchills’ speeches and his connection to different political parties" href="political_party_stylometric_analysis-Copy1.html" />
+    <link rel="prev" title="Basic Britishpoliticalspeech.org Scraper (TXT)" href="Britishpoliticalspeech_org_Scraper%28TXT%29.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/ChurchillSticker1.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Stylometric Analysis on Churchill's Political Speeches (SAPS)</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   Introduction
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Scraping
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Britishpoliticalspeech_org_Scraper%28CSV%29.html">
+   Scraping for csv files
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Britishpoliticalspeech_org_Scraper%28TXT%29.html">
+   Scraping for txt files
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Analysis
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Speech Data Exploration
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="political_party_stylometric_analysis-Copy1.html">
+   Stylometric analysis of Churchill's speeches
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/html_code/Data_Exploration_with_boxplot.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/Rohrym/Stylometric-Analysis-on-British-Political-Speeches"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/Rohrym/Stylometric-Analysis-on-British-Political-Speeches/issues/new?title=Issue%20on%20page%20%2Fhtml_code/Data_Exploration_with_boxplot.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/Rohrym/Stylometric-Analysis-on-British-Political-Speeches/main?urlpath=tree/html_code/Data_Exploration_with_boxplot.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Speech Data Exploration
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#initial-exploration-of-the-dataset">
+   Initial exploration of the dataset
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#some-exploratory-queries-visualizations">
+     Some exploratory queries &amp; visualizations
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#speech-counts">
+       Speech counts
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#location">
+       Location
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sentence-length">
+       Sentence length
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#boxplot-with-the-length-of-speeches-per-party">
+       Boxplot with the length of speeches per party
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Speech Data Exploration</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Speech Data Exploration
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#initial-exploration-of-the-dataset">
+   Initial exploration of the dataset
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#some-exploratory-queries-visualizations">
+     Some exploratory queries &amp; visualizations
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#speech-counts">
+       Speech counts
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#location">
+       Location
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#sentence-length">
+       Sentence length
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#boxplot-with-the-length-of-speeches-per-party">
+       Boxplot with the length of speeches per party
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="speech-data-exploration">
+<h1>Speech Data Exploration<a class="headerlink" href="#speech-data-exploration" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="initial-exploration-of-the-dataset">
+<h1>Initial exploration of the dataset<a class="headerlink" href="#initial-exploration-of-the-dataset" title="Permalink to this headline">¶</a></h1>
+<p>Here we can get a first idea of what the dataset looks like and what values are represented.
+As can be seen the dataset consists of 354 speeches each being accompanied by the following columns:</p>
+<ul class="simple">
+<li><p><em>ID</em></p></li>
+<li><p><em>Speaker</em></p></li>
+<li><p><em>Party</em></p></li>
+<li><p><em>Location</em></p></li>
+<li><p><em>Date</em></p></li>
+<li><p><em>Name of the speech</em></p></li>
+<li><p><em>Speech</em></p></li>
+</ul>
+<p>There are no NULL values in our dataset.<br />
+The <code class="docutils literal notranslate"><span class="pre">.sample()</span></code> function gives a peak into the values of our dataset.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;Code/speech_metadata.csv&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+<span class="n">df</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 354 entries, 0 to 353
+Data columns (total 7 columns):
+ #   Column       Non-Null Count  Dtype 
+---  ------       --------------  ----- 
+ 0   id           354 non-null    object
+ 1   speaker      354 non-null    object
+ 2   party        354 non-null    object
+ 3   location     354 non-null    object
+ 4   date         354 non-null    object
+ 5   name speech  354 non-null    object
+ 6   speech       354 non-null    object
+dtypes: object(7)
+memory usage: 19.5+ KB
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>speaker</th>
+      <th>party</th>
+      <th>location</th>
+      <th>date</th>
+      <th>name speech</th>
+      <th>speech</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>354</td>
+      <td>354</td>
+      <td>354</td>
+      <td>354</td>
+      <td>354</td>
+      <td>354</td>
+      <td>354</td>
+    </tr>
+    <tr>
+      <th>unique</th>
+      <td>354</td>
+      <td>54</td>
+      <td>5</td>
+      <td>62</td>
+      <td>347</td>
+      <td>341</td>
+      <td>354</td>
+    </tr>
+    <tr>
+      <th>top</th>
+      <td>Conservative_0</td>
+      <td>Paddy Ashdown</td>
+      <td>Labour</td>
+      <td>London</td>
+      <td>1998</td>
+      <td>Leader's speech, Brighton 1971</td>
+      <td>Thank you very much for that warm welcome. You...</td>
+    </tr>
+    <tr>
+      <th>freq</th>
+      <td>1</td>
+      <td>45</td>
+      <td>123</td>
+      <td>58</td>
+      <td>3</td>
+      <td>2</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>speaker</th>
+      <th>party</th>
+      <th>location</th>
+      <th>date</th>
+      <th>name speech</th>
+      <th>speech</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>178</th>
+      <td>Labour_178</td>
+      <td>Tony Blair</td>
+      <td>Labour</td>
+      <td>Blackpool</td>
+      <td>01/10/1996</td>
+      <td>Leader's speech, Blackpool 1996</td>
+      <td>Diana, friends, colleagues, this year we meet ...</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Conservative_13</td>
+      <td>David Cameron</td>
+      <td>Conservative</td>
+      <td>Birmingham</td>
+      <td>01/10/2014</td>
+      <td>Leader's speech, Birmingham 2014</td>
+      <td>I am so proud to stand here today as Prime Min...</td>
+    </tr>
+    <tr>
+      <th>304</th>
+      <td>Conservative_312</td>
+      <td>Stanley Baldwin</td>
+      <td>Conservative</td>
+      <td>Blackpool</td>
+      <td>07/10/1932</td>
+      <td>Leader's speech, Blackpool 1932</td>
+      <td>Mr. Baldwin thanked Blackpool for the great we...</td>
+    </tr>
+    <tr>
+      <th>37</th>
+      <td>Conservative_37</td>
+      <td>David Cameron</td>
+      <td>Conservative</td>
+      <td>Shipley</td>
+      <td>28/05/2010</td>
+      <td>"Transforming the British economy: Coalition s...</td>
+      <td>This is my first major speech as Prime Ministe...</td>
+    </tr>
+    <tr>
+      <th>132</th>
+      <td>Labour_132</td>
+      <td>Tony Blair</td>
+      <td>Labour</td>
+      <td>Bournemouth</td>
+      <td>28/09/1999</td>
+      <td>Leader's speech, Bournemouth 1999</td>
+      <td>Today at the frontier of the new Millennium I ...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="section" id="some-exploratory-queries-visualizations">
+<h2>Some exploratory queries &amp; visualizations<a class="headerlink" href="#some-exploratory-queries-visualizations" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="speech-counts">
+<h3>Speech counts<a class="headerlink" href="#speech-counts" title="Permalink to this headline">¶</a></h3>
+<p>Below we see some visualizations related to the amount of speeches in the dataset.</p>
+<p>We can see from the <em>first horizontal barplot</em> that the <strong>Labour party</strong> and <strong>Conservative party</strong> have the most speeches in the dataset (around 120 each), followed by the <strong>Liberal Democrats</strong> and the <strong>Liberal party</strong> with around 65 and 45 speeches respectively. The <strong>SPD-Liberal Alliance</strong> has only a few speeches in the dataset.</p>
+<blockquote>
+<div><p><em><strong>NOTE:</strong></em> The <strong>Liberal</strong> party merged with the <strong>SPD-Liberal Alliance</strong> to form the <strong>Liberal Democrats</strong> in 1988.</p>
+</div></blockquote>
+<p>The <em>second horizontal</em> barplot looks at the 10 speakers that gave the most amount of speeches.<br />
+Most of the speakers that have over 20 speeches appeared <em>after 1988</em>, which brings us to the final lineplot.</p>
+<p>In the <em>final lineplot</em> we can see that most speeches appeared around the <em>90s up until the 2010s</em> with a high peak around the <em>1995-2000</em> period.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#count speeches per party</span>
+<span class="n">df</span><span class="o">.</span><span class="n">value_counts</span><span class="p">([</span><span class="s1">&#39;party&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;barh&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Data_Exploration_with_boxplot_7_0.png" src="../_images/Data_Exploration_with_boxplot_7_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#count speeches per speaker</span>
+<span class="n">df</span><span class="o">.</span><span class="n">value_counts</span><span class="p">([</span><span class="s1">&#39;speaker&#39;</span><span class="p">])[:</span><span class="mi">10</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;barh&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Data_Exploration_with_boxplot_8_0.png" src="../_images/Data_Exploration_with_boxplot_8_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#speeches per year</span>
+<span class="n">years</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">date</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]:</span>
+    <span class="n">years</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">date</span><span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">:])</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">years</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">sort_index</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">line</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Data_Exploration_with_boxplot_9_0.png" src="../_images/Data_Exploration_with_boxplot_9_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="location">
+<h3>Location<a class="headerlink" href="#location" title="Permalink to this headline">¶</a></h3>
+<p>This visualization looks at the cities which have been visited the by the parties.<br />
+A significant number of speeches for both the <em>Labour</em> and the <em>Conservative party</em> have been given in <strong>Blackpool</strong>.<br />
+This could be explained by the <a class="reference external" href="https://www.wintergardensblackpool.co.uk/">Winter Gardens</a> which used to routinely host these political conferences.<br />
+Additionally, seaside towns like <strong>Brighton</strong>, <strong>Bournemouth</strong> and <strong>Blackpool</strong>, have been the hosts of UK-wide political conferences partly because of the cheap accomodation outside the holiday season.<br />
+More recently however, these events have been moved to more major cities which have purpose-built conference centres.</p>
+<blockquote>
+<div><p><em><a class="reference external" href="https://en.wikipedia.org/wiki/Party_conference_season">Source</a></em></p>
+</div></blockquote>
+<p>Therefore we can see that more major cities like <strong>London</strong> and <strong>Birmingham</strong> also have a fair share of speeches attributed to them.</p>
+<p>Another interesting observation is that <strong>Birmingham</strong> has no <em>Labour</em> speeches whereas the <a class="reference external" href="https://www.birmingham.gov.uk/info/50068/how_the_council_works/882/political_composition_of_the_council">Birmingham council has a majority of Labour councillers</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#location speeches per party</span>
+<span class="n">parties</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;party&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+<span class="n">party_location_dic</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">party</span> <span class="ow">in</span> <span class="n">parties</span><span class="p">:</span>
+    <span class="n">partyloc</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;party&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">party</span><span class="p">]</span>
+    <span class="n">partyloc</span> <span class="o">=</span> <span class="n">partyloc</span><span class="p">[</span><span class="s1">&#39;location&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()[:</span><span class="mi">10</span><span class="p">]</span>
+    <span class="n">party_location_dic</span><span class="p">[</span><span class="n">party</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">partyloc</span><span class="p">)</span>
+
+<span class="n">dft</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">party_location_dic</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">])</span>\
+                    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">party_location_dic</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>\
+                    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">party_location_dic</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">()],</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;party&quot;</span><span class="p">,</span> <span class="s2">&quot;city&quot;</span><span class="p">,</span> <span class="s2">&quot;times visited&quot;</span><span class="p">])</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">15</span><span class="p">))</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">barplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;times visited&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;city&quot;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s2">&quot;party&quot;</span> <span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="n">dft</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower right&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Data_Exploration_with_boxplot_11_0.png" src="../_images/Data_Exploration_with_boxplot_11_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="sentence-length">
+<h3>Sentence length<a class="headerlink" href="#sentence-length" title="Permalink to this headline">¶</a></h3>
+<p>The visualizations below will give an overview of the length of the speeches per party.</p>
+<p>Firstly we can observe <em><strong>the mean of the length of every speech per party.</strong></em><br />
+Interestingly, the <strong>Labour</strong> and <strong>Conservative</strong> party have a similar average speech length.<br />
+Additionally, the <strong>SPD-Liberal Alliance</strong> seems to have a relatively short speech length, however, this could be explained by the low number of speeches in the dataset.<br />
+The <strong>Liberal</strong> party has the highest average speech length with <strong>Liberal Democrats</strong> having, comparatively speaking, a short average speech length.</p>
+<p>Secondly, the lineplot visualizes the fluctuation of <em><strong>average speech length over the years.</strong></em><br />
+We can see some dips and peaks in the lineplot which is indicative of some of the outliers in the dataset.<br />
+It is fair to say that most speeches range from around <strong>15000 words</strong> to around <strong>35000 words</strong>, which can be observed more clearly in the final part of this exploratory analysis.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#average length of speech per party</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;speech&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;speech&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;length_in_words&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;speech&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="nb">len</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;party&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="s1">&#39;length_in_words&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>length_in_words</th>
+    </tr>
+    <tr>
+      <th>party</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Conservative</th>
+      <td>26133.000000</td>
+    </tr>
+    <tr>
+      <th>Labour</th>
+      <td>26521.162602</td>
+    </tr>
+    <tr>
+      <th>Liberal</th>
+      <td>30570.622222</td>
+    </tr>
+    <tr>
+      <th>Liberal Democrat</th>
+      <td>21201.492308</td>
+    </tr>
+    <tr>
+      <th>SDP-Liberal Alliance</th>
+      <td>14022.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#average speech length per year</span>
+<span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;year&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="s1">&#39;length_in_words&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">line</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Data_Exploration_with_boxplot_14_0.png" src="../_images/Data_Exploration_with_boxplot_14_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="boxplot-with-the-length-of-speeches-per-party">
+<h3>Boxplot with the length of speeches per party<a class="headerlink" href="#boxplot-with-the-length-of-speeches-per-party" title="Permalink to this headline">¶</a></h3>
+<p>In this boxplot we can see the differences between the length distribution per party.</p>
+<p>At first glance, we can see from this boxplot that the greatest distinction is between Liberals and the other two parties.</p>
+<ul class="simple">
+<li><p>The <em><strong>Conservative party’s</strong></em> <em>‘shortest’</em> speech has around <strong>50 words</strong> and the <em>‘longest’</em> speech has around <strong>47000 words</strong>.<br />
+The majority of the speeches from the Conservative party have between <strong>20000 (Q1) and 35000 words (Q3).</strong></p></li>
+<li><p>The <em><strong>Labour party’s</strong></em> <em>‘shortest’</em> speech has around <strong>2000 words</strong>, whereas the <em>‘longest’</em> speech has over <strong>51000 words</strong>.<br />
+The majority of the speeches from the Labour party have between <strong>15000 (Q1) and 35000 words (Q3)</strong>.</p></li>
+<li><p>The <em><strong>Liberal party’s</strong></em> <em>‘shortest’</em> speech has around <strong>8000 words</strong>, whereas the <em>‘longest’</em> speech has around <strong>55000 words</strong>.<br> <strong>NOTE:</strong> Important to note here is that these speeches are outliers in the Liberal speeches.<br />
+The majority of the speeches from the Liberals have between <strong>25000 (Q1) and 35000 words (Q3)</strong>.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_three</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;party&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Conservative&#39;</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;party&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Labour&#39;</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;party&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Liberal&#39;</span><span class="p">)]</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;party&#39;</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="s1">&#39;length_in_words&#39;</span><span class="p">,</span><span class="n">data</span><span class="o">=</span><span class="n">df_three</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/Data_Exploration_with_boxplot_17_0.png" src="../_images/Data_Exploration_with_boxplot_17_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Conservatives&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_three</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df_three</span><span class="p">[</span><span class="s1">&#39;party&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Conservative&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Labour&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_three</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df_three</span><span class="p">[</span><span class="s1">&#39;party&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Labour&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Liberal&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_three</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df_three</span><span class="p">[</span><span class="s1">&#39;party&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Liberal&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Conservatives
+       length_in_words
+count       118.000000
+mean      26133.000000
+std       10955.536236
+min          56.000000
+25%       20025.250000
+50%       27488.000000
+75%       34431.750000
+max       47490.000000
+Labour
+       length_in_words
+count       123.000000
+mean      26521.162602
+std       12770.481760
+min        2471.000000
+25%       15515.000000
+50%       29320.000000
+75%       35934.000000
+max       51549.000000
+Liberal
+       length_in_words
+count        45.000000
+mean      30570.622222
+std        9148.845377
+min        8051.000000
+25%       25877.000000
+50%       30924.000000
+75%       35141.000000
+max       54887.000000
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./html_code"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="Britishpoliticalspeech_org_Scraper%28TXT%29.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Basic Britishpoliticalspeech.org Scraper (TXT)</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="political_party_stylometric_analysis-Copy1.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Stylometric analysis of Churchills’ speeches and his connection to different political parties</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Paschalis Agapitos, Jan-Tieme Bakema, Thomas Hoekstra, Maria Sygletou<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
